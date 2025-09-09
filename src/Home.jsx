@@ -11,7 +11,7 @@ import TrackEvent from "./components/Track"
 import OtherP from './components/OtherP';
 import Autoslide from "./components/Autoslide"
 import ShipmentMedia from "./components/Shipmentmedia"
-import ProdcutSection from './components/ProductSecction';
+//import ProdcutSection from './components/ProductSecction';
 import AboutP from "./components/AboutP"
 import Credibility from "./components/Credibility"
 import Location from "./components/Location"
@@ -27,7 +27,7 @@ const Home = () => {
        <TrackEvent/>
        <OtherP/>
        <Autoslide/>
-    <ProdcutSection/>
+    {/* <ProdcutSection/> */}
        <ShipmentMedia/>
        <AboutP/>
        

@@ -19,7 +19,7 @@ function App() {
 
         <Route path="/" element={<Home />} />
          <Route path="/admin" element={<AdminLogin />} /> 
-        <Route path="/dashboard" element={<DashboardForm />} />
+        {/* <Route path="/dashboard" element={<DashboardForm />} /> */}
         <Route path="/listshipments" element={<ShipmentList />} />
        
 
