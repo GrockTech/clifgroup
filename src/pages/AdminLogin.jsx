@@ -1,29 +1,34 @@
+
+
 import { useState } from "react";
- function AdminLogin() {
+
+function AdminLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin =  async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-  //   // Here you would call backend API for auth
-  //   if (username === process.env.EMAIL && password === process.env.PASSWORD) {
-  //   // redirect to another page after login
-  //   } else {
-  //     alert("Invalid credentials");
-  //   }
-  // };
-  if (
-      username === process.env.REACT_APP_ADMIN_EMAIL &&
-      password === process.env.REACT_APP_ADMIN_PASSWORD
-    ) {
-      // Redirect after login
-      window.location.href = "/dashboard";
-    } else {
-      alert("Invalid credentials");
+
+    try {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: username, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        // Save token (if needed) and redirect
+        localStorage.setItem("token", data.token);
+        window.location.href = "/dashboard";
+      } else {
+        alert(data.message || "Invalid credentials");
+      }
+    } catch (err) {
+      alert("Error connecting to server: " + err.message);
     }
   };
-
- 
 
   return (
     <div className="container mt-4 pt-4">
@@ -39,7 +44,6 @@ import { useState } from "react";
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        
         <div className="mb-3">
           <label className="form-label">Password</label>
           <input
@@ -50,7 +54,6 @@ import { useState } from "react";
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-
         <button type="submit" className="btn btn-primary">Login</button>
       </form>
     </div>
