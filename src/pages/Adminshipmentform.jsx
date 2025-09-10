@@ -213,8 +213,7 @@ function AdminShipmentForm() {
 
        <Link className="nav-link" to="/listshipments">
        <div>
-        <CiViewList />
-       <p>View Shipments</p> 
+        <p>  <CiViewList /> View Shipments</p> 
        </div>
         
       </Link> 
