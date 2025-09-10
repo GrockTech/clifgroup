@@ -6,14 +6,13 @@ function AdminLogin() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-console.log("API URL:", process.env.REACT_APP_API_URL);
     try {
       const res = await fetch(`${process.env.REACT_APP_API_URL}/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: username, password }),
       });
-     // console.log("API URL:", process.env.REACT_APP_API_URL);
+     console.log("API URL:", process.env.REACT_APP_API_URL);
       const data = await res.json();
 
       if (res.ok && data.success) {

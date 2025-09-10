@@ -80,7 +80,8 @@ const Hero = () => {
                 }}
                 className="btn bg-black text-white btn-lg my-2 hover-effect"
               >
-                Get Started
+                <a className="nav-link" href="#service">Explore </a>
+                
               </button>
             </div>
 
