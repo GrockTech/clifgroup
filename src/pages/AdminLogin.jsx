@@ -1,5 +1,3 @@
-
-
 import { useState } from "react";
 
 function AdminLogin() {
@@ -15,7 +13,7 @@ function AdminLogin() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: username, password }),
       });
-
+      console.log("API URL:", process.env.REACT_APP_API_URL);
       const data = await res.json();
 
       if (res.ok && data.success) {
@@ -54,7 +52,9 @@ function AdminLogin() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">Login</button>
+        <button type="submit" className="btn btn-primary">
+          Login
+        </button>
       </form>
     </div>
   );
