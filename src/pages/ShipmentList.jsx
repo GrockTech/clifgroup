@@ -9,7 +9,7 @@ function ShipmentList() {
 
   // Fetch shipments
   useEffect(() => {
-    fetch("api/shipments")
+    fetch("/api/shipments")
       .then((res) => res.json())
       .then((data) => {
         setShipments(data);
@@ -24,7 +24,7 @@ function ShipmentList() {
   // Update status
   const updateStatus = async (id, newStatus) => {
     try {
-      const res = await fetch("api/shipments/${id}/status", {
+      const res = await fetch("/api/shipments/${id}/status", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus }),
