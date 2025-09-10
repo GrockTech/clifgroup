@@ -1,0 +1,5 @@
+# ✅ Forward all frontend routes to React
+/*    /index.html   200
+
+# ✅ Proxy API requests to Render backend
+/api/*    https://backend-clif.onrender.com/:splat   200
