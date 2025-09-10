@@ -26,7 +26,7 @@ import { useState } from "react";
  
 
   return (
-    <div className="container mt-8">
+    <div className="container mt-4 pt-4">
       <h2>Admin Login</h2>
       <form onSubmit={handleLogin} className="mt-3">
         <div className="mb-3">
