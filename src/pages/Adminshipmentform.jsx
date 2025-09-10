@@ -35,7 +35,7 @@ function AdminShipmentForm() {
   e.preventDefault();
 
   try {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/shipments`, {
+    const res = await fetch("api/shipments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
