@@ -11,12 +11,12 @@ import ship from "../assets/videos/shiping.mp4"
 export default function ShipmentMedia() {
   return (
     <div className="container my-5">
-  <h2 className="text-center mb-4 text-dark">Our Shipping in Action 🚢📦</h2>
+  <h2 className="text-center mb-4 text-dark">Our Shipping in Action </h2>
 
   <div className="row">
     {/* Left Column */}
     <div className="col-md-6">
-      <h5>Shipment Videos</h5>
+      
       <video
         autoPlay
         muted
@@ -46,7 +46,7 @@ export default function ShipmentMedia() {
 
     {/* Right Column */}
     <div className="col-md-6">
-      <h5>Shipment Videos</h5>
+      
       <video
         autoPlay
         muted

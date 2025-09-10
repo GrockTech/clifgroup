@@ -1,7 +1,7 @@
 import React from 'react'
 //import sarfo from '../assets/sarfo.jpg'
-import solo from '../assets/images.png'
-
+// import solo from '../assets/images/trigs.jpg'
+import frimp from "../assets/images/triga.jpg"
 import ceo from '../assets/images/ceo.png'
 import sectary from '../assets/images/secreatary.png'
 
@@ -21,7 +21,7 @@ const Management = () => {
     {
     name: 'Frimpong Ohene Solomon',
     title: 'Lead Technician',
-    image: solo,
+    image: frimp,
   },
 
 
@@ -37,7 +37,7 @@ const Management = () => {
               <div className="card h-100 shadow-sm">
                 <img
                   src={member.image}
-                  className="card-img-top img-fluid rounded-circle p-4"
+                  className="card-img-top img-fluid rounded-circle p-4 pt-4 mt-4"
                   alt={member.name}
                   style={{ height: '320px', objectFit: 'cover' }}
                 />
