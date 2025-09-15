@@ -212,7 +212,7 @@ function AdminShipmentForm() {
       {/* View Shipment List Button */}
       <button
         className="btn btn-primary mt-3"
-        onClick={() => navigate("/listshipments")}
+        onClick={() => navigate("/showlist")}
       >
         <CiViewList className="me-2" />
         View Shipment List
