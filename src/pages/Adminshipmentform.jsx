@@ -262,6 +262,7 @@ console.log("i am on the apge")
         <CiViewList /> View Shipments
       </button>
       </form>
+      <h1>it shoudwork</h1>
 
 {/* //new component here */}
 
