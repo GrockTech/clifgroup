@@ -12,6 +12,7 @@ import { Routes, Route } from 'react-router-dom';
 import DashboardFrom from "./components/Adminshipmentform"
 import AboutP from './components/AboutP';
 import Credibility from './components/Credibility';
+import ShowshipmentList from './components/Showshipments';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
          <Route path="/admin" element={<AdminLogin />} /> 
         <Route path="/dashboard" element={< DashboardFrom/>} />
         <Route path="/listshipments" element={<ShipmentList />} />
+        <Route path="/showslist" element={<ShowshipmentList />} />
          <Route path="/aboutus" element={<AboutP />} />
          <Route path='/ourcert' element={<Credibility/>}/>
        

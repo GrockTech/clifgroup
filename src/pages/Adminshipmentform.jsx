@@ -210,12 +210,12 @@ const navigate = useNavigate()
         </div>
    <button 
         className="btn btn-primary mt-3" 
-        onClick={() => navigate("/listshipments")}
+        onClick={() => navigate("/showlist")}
       >
         <CiViewList /> View Shipments
       </button>
       </form>
-          <button onClick={useNavigate("/listshipments")}> View Shipments</button>
+
 
     </div>
   );
