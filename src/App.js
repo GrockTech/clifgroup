@@ -13,7 +13,8 @@ import DashboardFrom from "./components/Adminshipmentform"
 import AboutP from './components/AboutP';
 import Credibility from './components/Credibility';
 //import ShowshipmentList from './components/Showshipments';
-import Myshipment from './components/Myshipment';
+// import Myshipment from './components/Myshipment';
+import Demo from './components/Demo';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
          <Route path="/admin" element={<AdminLogin />} /> 
         <Route path="/dashboard" element={< DashboardFrom/>} />
         {/* <Route path="/listshipments" element={<ShipmentList />} /> */}
-        <Route path="/showlist" element={<Myshipment/>} />
+        <Route path="/showlist" element={<Demo/>} />
          <Route path="/aboutus" element={<AboutP />} />
          <Route path='/ourcert' element={<Credibility/>}/>
        
