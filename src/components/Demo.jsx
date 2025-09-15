@@ -164,7 +164,7 @@ const Demo = () => {
 
   return (
     <div>
-      <h2>GOD MAKE T POSSIBLE</h2>
+
       <div className="container mt-5 pt-5">
         <Link to="/dashboard" className="nav-link">
           <div>

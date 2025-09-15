@@ -211,16 +211,16 @@ function AdminShipmentForm() {
       </form>
 
       {/* View Shipment List Button */}
-      {/* <button
+      <button
         className="btn btn-primary mt-3"
         onClick={() => navigate("/showlist")}
       >
         <CiViewList className="me-2" />
         View Shipment List
-      </button> */}
-      <div className="container mt-4 pt-4 mb-4">
+      </button>
+      {/* <div className="container mt-4 pt-4 mb-4">
     <Demo/>
-      </div>
+      </div> */}
       
     </div>
   );
