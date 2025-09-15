@@ -25,6 +25,7 @@ function AdminShipmentForm() {
     setFormData((prev) => ({ ...prev, trackingId: randomId }));
   }, []);
 
+const navigate = useNavigate()
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -70,10 +71,11 @@ function AdminShipmentForm() {
 };
 
   return (
-    <div className="container mt-5 pt-5 ">
+    <div className=" text- start container mt-5 pt-5 ">
       <h3>Add New Shipment</h3>
 
-    <button onClick={useNavigate("/listshipments")}> View Shipments</button>
+
+      
       <form onSubmit={handleSubmit} className="row g-3">
 
         <div className="col-md-6">
@@ -206,19 +208,15 @@ function AdminShipmentForm() {
             onChange={handleChange}
           ></textarea>
         </div>
-
-        <div className="col-12">
-          <button type="submit" className="btn btn-success">Save Shipment</button>
-        </div>
+   <button 
+        className="btn btn-primary mt-3" 
+        onClick={() => navigate("/listshipments")}
+      >
+        <CiViewList /> View Shipments
+      </button>
       </form>
+          <button onClick={useNavigate("/listshipments")}> View Shipments</button>
 
-
-       <Link className="nav-link" to="/listshipments">
-       <div>
-        <p>  <CiViewList /> View Shipments</p> 
-       </div>
-        
-      </Link> 
     </div>
   );
 }
