@@ -24,7 +24,7 @@ function ShowshipmentList() {
   // Update status
   const updateStatus = async (id, newStatus) => {
     try {
-      const res = await fetch("/api/shipments/${id}/status", {
+      const res = await fetch(`/api/shipments/${id}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus }),
@@ -49,13 +49,12 @@ function ShowshipmentList() {
   return (
     <div className="container mt-5 pt-5">
       <Link to="/dashboard" className="nav-link">
-    <div>
-         <IoChevronBackCircle className="me-2"/>
-      Get Back 
-     
-    </div>
+        <div>
+          <IoChevronBackCircle className="me-2" />
+          Get Back
+        </div>
       </Link>
-      <br/>
+      <br />
       <h3>All Shipments</h3>
       <table className="table table-bordered">
         <thead>

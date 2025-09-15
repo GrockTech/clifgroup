@@ -6,7 +6,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // includes Popper
 import Navbar from "./components/Navbar"
 import Footer from "./pages/Footer"
 import Home from './Home';
-import ShipmentList from "./pages/Adminshipmentform"
+// import ShipmentList from "./pages/Adminshipmentform"
 import AdminLogin from "./pages/AdminLogin"
 import { Routes, Route } from 'react-router-dom';
 import DashboardFrom from "./components/Adminshipmentform"
@@ -24,8 +24,8 @@ function App() {
         <Route path="/" element={<Home />} />
          <Route path="/admin" element={<AdminLogin />} /> 
         <Route path="/dashboard" element={< DashboardFrom/>} />
-        <Route path="/listshipments" element={<ShipmentList />} />
-        <Route path="/showslist" element={<ShowshipmentList />} />
+        {/* <Route path="/listshipments" element={<ShipmentList />} /> */}
+        <Route path="/showlist" element={<ShowshipmentList />} />
          <Route path="/aboutus" element={<AboutP />} />
          <Route path='/ourcert' element={<Credibility/>}/>
        
