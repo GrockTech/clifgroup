@@ -7,6 +7,7 @@ import bg from "../assets/bg1.jpg";
 //import Footer from "./Footer";
 import { useState } from "react";
 import { useEffect } from "react";
+//import { Link } from "react-router-dom";
 //import ShipmentMedia from "./Shipmentmedia";
 
 // import { useRef } from "react";
@@ -17,28 +18,46 @@ const Hero = () => {
   const typewriterRef = useRef(null);
   const [animate, setAnimate] = useState(false);
 
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       if (entry.isIntersecting) {
+  //         setAnimate(false); // Reset
+  //         requestAnimationFrame(() => {
+  //           void typewriterRef.current.offsetWidth; // Reflow
+  //           setTimeout(() => setAnimate(true), 50); // Delay re-trigger
+  //         });
+  //       }
+  //     },
+  //     { threshold: 0.5 }
+  //   );
+
+  //   const element = typewriterRef.current;
+  //   if (element) observer.observe(element);
+
+  //   return () => {
+  //     if (element) observer.unobserve(element);
+  //   };
+  // }, []);
+
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setAnimate(false); // Reset
-          requestAnimationFrame(() => {
-            void typewriterRef.current.offsetWidth; // Reflow
-            setTimeout(() => setAnimate(true), 50); // Delay re-trigger
-          });
-        }
-      },
-      { threshold: 0.5 }
-    );
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setAnimate(false); // reset class
+        setTimeout(() => setAnimate(true), 10); // short delay to re-trigger
+      }
+    },
+    { threshold: 0.5 }
+  );
 
-    const element = typewriterRef.current;
-    if (element) observer.observe(element);
+  const element = typewriterRef.current;
+  if (element) observer.observe(element);
 
-    return () => {
-      if (element) observer.unobserve(element);
-    };
-  }, []);
-
+  return () => {
+    if (element) observer.unobserve(element);
+  };
+}, []);
   return (
     <div
       className=" container text-white text-center mb-8 "
@@ -46,7 +65,7 @@ const Hero = () => {
       style={{
         background: `url(${bg}) no-repeat center center`,
         backgroundSize: "cover",
-        height: "80vh",
+        height: "60vh",
       }}
     >
       <section className=" text-light pt - 5 mt-5 p-5 text-center  text-sm-start" id="home">
@@ -69,7 +88,7 @@ const Hero = () => {
               <p className={`lead ${animate ? "animate-delay" : ""} mt-3`}>
                 {" "}
                 {/* Adds spacing above paragraph */}
-                Clifpalm Group — Driving Excellence Across Industries
+                Cliffpalm Group — Driving Excellence Across Industries
               </p>
               <button
                 onClick={() => {
@@ -80,8 +99,8 @@ const Hero = () => {
                 }}
                 className="btn bg-black text-white btn-lg my-2 hover-effect"
               >
-                <a className="nav-link" href="#service">Explore </a>
-                
+                <a className="nav-link" href="#product">Explore </a>
+                {/* <Link to="/aboutus" className="nav-link"/> */}
               </button>
             </div>
 

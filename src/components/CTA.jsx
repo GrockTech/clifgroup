@@ -17,7 +17,7 @@ const CTA = () => {
       <form className="bg-white text-dark p-4 rounded shadow-sm">
         <div className="mb-3">
           <label htmlFor="fullname" className="form-label">Full Name</label>
-          <input type="text" className="form-control" id="fullname" placeholder="John Doe" />
+          <input type="text" className="form-control" id="fullname" placeholder="Yaw Mensah" />
         </div>
 
         <div className="mb-3">
@@ -27,7 +27,7 @@ const CTA = () => {
 
         <div className="mb-3">
           <label htmlFor="phone" className="form-label">Phone Number</label>
-          <input type="tel" className="form-control" id="phone" placeholder="+1 234 567 890" />
+          <input type="tel" className="form-control" id="phone" placeholder="233" />
         </div>
 
         <div className="mb-3">

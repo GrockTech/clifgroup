@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {  Link } from "react-router-dom";
-// const TrackingNumber = 0;
+import { useNavigate } from "react-router-dom";
 import { CiViewList } from "react-icons/ci";
 
 function AdminShipmentForm() {
-
-
   const [formData, setFormData] = useState({
     trackingId: "",
     senderName: "",
@@ -19,87 +16,62 @@ function AdminShipmentForm() {
     weight: "",
     remarks: "",
   });
-  
-   useEffect(() => {
+
+  const navigate = useNavigate();
+
+  // Generate tracking ID on first render
+  useEffect(() => {
     const randomId = Math.floor(100000 + Math.random() * 900000); // 6-digit number
     setFormData((prev) => ({ ...prev, trackingId: randomId }));
   }, []);
-
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/shipments`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(
-         formData
-),
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/shipments`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
-    });
+      const data = await res.json();
+      console.log("Server response:", data);
+      alert("Details saved successfully ✅");
 
-    const data = await res.json();
-    console.log("Server response:", data);
-    alert("details saved");
-
-     setFormData({
-      trackingId: "",
-      senderName: "",
-      receiverName: "",
-      origin: "",
-      destination: "",
-      currentLocation: "",
-      shipmentDate: "",
-      deliveryDate: "",
-      weight: "",
-      status: "Pending",
-      remarks: "",
-    });
-
-  } catch (error) {
-    console.error("Error saving shipment:", error.message);
-  }
-};
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//    // console.log("Saving shipment to DB:", formData);
-
-   
-// try {
-  
-//  const res = await fetch("http://localhost:5000/api", {
-//         method: "POST",
-//         headers: {
-//           "Content-type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           subject,
-//           task,
-//           dateValue,
-//         }),
-
-
-  
-// } catch (error) {
-//   console.log({message: error.message});
-// }
-//     // here you’ll send data to backend API with fetch/axios
-//   };
+      // Reset form with new tracking ID
+      const newId = Math.floor(100000 + Math.random() * 900000);
+      setFormData({
+        trackingId: newId,
+        senderName: "",
+        receiverName: "",
+        origin: "",
+        destination: "",
+        currentLocation: "",
+        shipmentDate: "",
+        deliveryDate: "",
+        weight: "",
+        status: "Pending",
+        remarks: "",
+      });
+    } catch (error) {
+      console.error("Error saving shipment:", error.message);
+    }
+  };
 
   return (
-    <div className="container mt-5 pt-5 ">
+    <div className="container mt-5 pt-5">
       <h3>Add New Shipment</h3>
       <form onSubmit={handleSubmit} className="row g-3">
-
         <div className="col-md-6">
           <label className="form-label">Tracking ID</label>
           <input
@@ -107,7 +79,6 @@ function AdminShipmentForm() {
             className="form-control"
             name="trackingId"
             value={formData.trackingId}
-           // value={TrackingNumber}
             onChange={handleChange}
             required
           />
@@ -232,18 +203,20 @@ function AdminShipmentForm() {
         </div>
 
         <div className="col-12">
-          <button type="submit" className="btn btn-success">Save Shipment</button>
+          <button type="submit" className="btn btn-success">
+            Save Shipment
+          </button>
         </div>
       </form>
 
-
-       <Link className="nav-link" to="/listshipments">
-       <div>
-        <CiViewList />
-       <p>View Shipments</p> 
-       </div>
-        
-      </Link>
+      {/* View Shipment List Button */}
+      <button
+        className="btn btn-primary mt-3"
+        onClick={() => navigate("/listshipments")}
+      >
+        <CiViewList className="me-2" />
+        View Shipment List
+      </button>
     </div>
   );
 }

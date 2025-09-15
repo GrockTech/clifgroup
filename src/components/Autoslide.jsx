@@ -41,7 +41,7 @@ const ImageSlider = () => {
 
   return (
     <div 
-      id="imageSlider" 
+      id="imageSlider product" 
       className="carousel slide" 
       data-bs-ride="carousel"
       style={{ maxWidth: "1200px", height:"600px", margin: "0 auto" }}

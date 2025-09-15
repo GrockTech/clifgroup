@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
  import {  Link } from "react-router-dom";
 // const TrackingNumber = 0;
 import { CiViewList } from "react-icons/ci";
-
+      import { useNavigate } from "react-router-dom";
 function AdminShipmentForm() {
 
 
@@ -72,6 +72,8 @@ function AdminShipmentForm() {
   return (
     <div className="container mt-5 pt-5 ">
       <h3>Add New Shipment</h3>
+
+    <button onClick={useNavigate("/listshipments")}> View Shipments</button>
       <form onSubmit={handleSubmit} className="row g-3">
 
         <div className="col-md-6">

@@ -17,6 +17,8 @@ import Credibility from "./components/Credibility"
 import Location from "./components/Location"
 import Management from "./components/Management"
 import CTA from "./components/CTA"
+import Procurement from './components/Procurement';
+import WhatsAppButton from './components/WhatsappButton';
 
 
 
@@ -27,10 +29,11 @@ const Home = () => {
        <TrackEvent/>
        <OtherP/>
        <Autoslide/>
+       <WhatsAppButton/>
     {/* <ProdcutSection/> */}
        <ShipmentMedia/>
        <AboutP/>
-       
+       <Procurement/>
           <Credibility/>
           <Location />
           <Management />
