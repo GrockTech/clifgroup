@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { CiViewList } from "react-icons/ci";
+//import { useNavigate } from "react-router-dom";
+//import { CiViewList } from "react-icons/ci";
 import Demo from "./Demo";
 
 function AdminShipmentForm() {
@@ -18,7 +18,7 @@ function AdminShipmentForm() {
     remarks: "",
   });
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   // Generate tracking ID on first render
   useEffect(() => {
@@ -211,13 +211,13 @@ function AdminShipmentForm() {
       </form>
 
       {/* View Shipment List Button */}
-      <button
+      {/* <button
         className="btn btn-primary mt-3"
         onClick={() => navigate("/showlist")}
       >
         <CiViewList className="me-2" />
         View Shipment List
-      </button>
+      </button> */}
       <div className="container mt-4 pt-4 mb-4">
     <Demo/>
       </div>
