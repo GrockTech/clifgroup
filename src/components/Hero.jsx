@@ -114,7 +114,7 @@ const Hero = () => {
         </div>
       </section>
 
-      <div id="givespace"></div>
+      {/* <div id="givespace"></div> */}
       {/* <Track/> */}
        </div>
   );
