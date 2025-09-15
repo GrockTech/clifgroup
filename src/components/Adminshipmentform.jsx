@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-//import { useNavigate } from "react-router-dom";
-//import { CiViewList } from "react-icons/ci";
-import Demo from "./Demo";
+import { useNavigate } from "react-router-dom";
+import { CiViewList } from "react-icons/ci";
+//import Demo from "./Demo";
 
 function AdminShipmentForm() {
   const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ function AdminShipmentForm() {
     remarks: "",
   });
 
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // Generate tracking ID on first render
   useEffect(() => {
