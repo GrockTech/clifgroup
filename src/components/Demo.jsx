@@ -8,7 +8,7 @@ const [shipments, setShipments] = useState([]);
 
   // Fetch shipments
   useEffect(() => {
-    fetch("/api/shipments")
+    fetch(`${process.env.REACT_APP_API_URL}/api/shipments/${id}/status`)
       .then((res) => res.json())
       .then((data) => {
         setShipments(data);
@@ -23,7 +23,7 @@ const [shipments, setShipments] = useState([]);
   // Update status
   const updateStatus = async (id, newStatus) => {
     try {
-      const res = await fetch(`/api/shipments/${id}/status`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/shipments/${id}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus }),
