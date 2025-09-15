@@ -33,7 +33,7 @@ function ShowshipmentList() {
       if (!res.ok) throw new Error("Failed to update status");
 
       const updated = await res.json();
-
+console.log("api", newStatus)
       // update local state
       setShipments((prev) =>
         prev.map((s) => (s._id === id ? { ...s, status: updated.status } : s))
