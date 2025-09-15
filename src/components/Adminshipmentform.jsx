@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CiViewList } from "react-icons/ci";
+import Demo from "./Demo";
 
 function AdminShipmentForm() {
   const [formData, setFormData] = useState({
@@ -217,6 +218,10 @@ function AdminShipmentForm() {
         <CiViewList className="me-2" />
         View Shipment List
       </button>
+      <div className="container mt-4 pt-4 mb-4">
+    <Demo/>
+      </div>
+      
     </div>
   );
 }

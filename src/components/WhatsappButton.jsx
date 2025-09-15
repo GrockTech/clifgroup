@@ -11,6 +11,7 @@ const WhatsAppButton = () => {
       <FaWhatsapp size={32} />
     </a>
   );
+  
 };
 
 export default WhatsAppButton;
