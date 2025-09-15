@@ -26,8 +26,8 @@ const Footer = () => {
       <div className="col-md-4 mb-3">
         <h5>Contact Info</h5>
         <ul className="list-unstyled small">
-          <li>Email: sarfo.clif@gmail.com</li>
-          <li>Phone: +233 551 249 915</li>
+          <li>Email: gliffpalmgroup@gmail.com</li>
+          <li>Phone: +233 597 381 447</li>
           <li>Address: Achimota Old Station, Accra - Ghana</li>
         </ul>
       </div>
