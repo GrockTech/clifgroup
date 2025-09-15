@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
-// import {  Link } from "react-router-dom";
-// const TrackingNumber = 0;
-import { CiViewList } from "react-icons/ci";
-      import { useNavigate } from "react-router-dom";
-function AdminShipmentForm() {
 
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { IoChevronBackCircle } from "react-icons/io5";
+import { CiViewList } from "react-icons/ci";
+
+function AdminShipmentForm() {
+  const [shipments, setShipments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const [formData, setFormData] = useState({
     trackingId: "",
@@ -19,63 +22,16 @@ function AdminShipmentForm() {
     weight: "",
     remarks: "",
   });
-  
-   useEffect(() => {
-    const randomId = Math.floor(100000 + Math.random() * 900000); // 6-digit number
+
+  const navigate = useNavigate();
+
+  // generate random ID when component mounts
+  useEffect(() => {
+    const randomId = Math.floor(100000 + Math.random() * 900000);
     setFormData((prev) => ({ ...prev, trackingId: randomId }));
   }, []);
 
-const navigate = useNavigate()
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-
-  const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  try {
-    const res = await fetch("api/shipments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(
-         formData
-),
-
-    });
-
-    const data = await res.json();
-    console.log("Server response:", data);
-    alert("details saved");
-
-     setFormData({
-      trackingId: "",
-      senderName: "",
-      receiverName: "",
-      origin: "",
-      destination: "",
-      currentLocation: "",
-      shipmentDate: "",
-      deliveryDate: "",
-      weight: "",
-      status: "Pending",
-      remarks: "",
-    });
-
-  } catch (error) {
-    console.error("Error saving shipment:", error.message);
-  }
-
-
-
-    const [shipments, setShipments] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // Fetch shipments
+  // fetch shipments list
   useEffect(() => {
     fetch("/api/shipments")
       .then((res) => res.json())
@@ -89,7 +45,47 @@ const navigate = useNavigate()
       });
   }, []);
 
-  // Update status
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("/api/shipments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      console.log("Server response:", data);
+      alert("Details saved");
+
+      // reset form
+      setFormData({
+        trackingId: "",
+        senderName: "",
+        receiverName: "",
+        origin: "",
+        destination: "",
+        currentLocation: "",
+        shipmentDate: "",
+        deliveryDate: "",
+        weight: "",
+        status: "Pending",
+        remarks: "",
+      });
+
+      // refresh shipment list
+      setShipments((prev) => [...prev, data]);
+    } catch (error) {
+      console.error("Error saving shipment:", error.message);
+    }
+  };
+
+  // update status
   const updateStatus = async (id, newStatus) => {
     try {
       const res = await fetch(`/api/shipments/${id}/status`, {
@@ -101,9 +97,7 @@ const navigate = useNavigate()
       if (!res.ok) throw new Error("Failed to update status");
 
       const updated = await res.json();
-console.log("api", newStatus)
-console.log("i am on the apge")
-      // update local state
+
       setShipments((prev) =>
         prev.map((s) => (s._id === id ? { ...s, status: updated.status } : s))
       );
@@ -112,19 +106,12 @@ console.log("i am on the apge")
     }
   };
 
-  if (loading) return <p>Loading shipments...</p>;
-  if (error) return <p>Error: {error}</p>;
-
-};
-
   return (
-    <div className=" text- start container mt-5 pt-5 ">
+    <div className="text-start container mt-5 pt-5">
       <h3>Add New Shipment</h3>
 
-
-      
+      {/* Shipment Form */}
       <form onSubmit={handleSubmit} className="row g-3">
-
         <div className="col-md-6">
           <label className="form-label">Tracking ID</label>
           <input
@@ -132,7 +119,6 @@ console.log("i am on the apge")
             className="form-control"
             name="trackingId"
             value={formData.trackingId}
-           // value={TrackingNumber}
             onChange={handleChange}
             required
           />
@@ -255,67 +241,94 @@ console.log("i am on the apge")
             onChange={handleChange}
           ></textarea>
         </div>
-   <button 
-        className="btn btn-primary mt-3" 
-        onClick={() => navigate("/showlist")}
-      >
-        <CiViewList /> View Shipments
-      </button>
+
+        <button type="submit" className="btn btn-success mt-3">
+          Save Shipment
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-primary mt-3 ms-2"
+          onClick={() => navigate("/showlist")}
+        >
+          <CiViewList /> View Shipments
+        </button>
       </form>
-      <h1>it shoudwork</h1>
 
-{/* //new component here */}
+      {/* Shipments Table */}
+      <div className="container mt-5 pt-5">
+        <Link to="/dashboard" className="nav-link">
+          <div>
+            <IoChevronBackCircle className="me-2" />
+            Get Back
+          </div>
+        </Link>
+        <br />
+        <h3>All Shipments</h3>
 
-<div className="container mt-5 pt-5">
-      <Link to="/dashboard" className="nav-link">
-        <div>
-          <IoChevronBackCircle className="me-2" />
-          Get Back
-        </div>
-      </Link>
-      <br />
-      <h3>All Shipments</h3>
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th>Tracking ID</th>
-            <th>Sender</th>
-            <th>Receiver</th>
-            <th>Origin</th>
-            <th>Destination</th>
-            <th>Status</th>
-            <th>Update</th>
-          </tr>
-        </thead>
-        <tbody>
-          {shipments.map((shipment) => (
-            <tr key={shipment._id}>
-              <td>{shipment.trackingId}</td>
-              <td>{shipment.senderName}</td>
-              <td>{shipment.receiverName}</td>
-              <td>{shipment.origin}</td>
-              <td>{shipment.destination}</td>
-              <td>{shipment.status}</td>
-              <td>
-                <select
-                  value={shipment.status}
-                  onChange={(e) => updateStatus(shipment._id, e.target.value)}
-                  className="form-select"
-                >
-                  <option>Pending</option>
-                  <option>In Transit</option>
-                  <option>Delivered</option>
-                  <option>Delayed</option>
-                </select>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-
+        {loading ? (
+          <p>Loading shipments...</p>
+        ) : error ? (
+          <p>Error: {error}</p>
+        ) : (
+          <table className="table table-bordered">
+            <thead>
+              <tr>
+                <th>Tracking ID</th>
+                <th>Sender</th>
+                <th>Receiver</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Status</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              {shipments.map((shipment) => (
+                <tr key={shipment._id}>
+                  <td>{shipment.trackingId}</td>
+                  <td>{shipment.senderName}</td>
+                  <td>{shipment.receiverName}</td>
+                  <td>{shipment.origin}</td>
+                  <td>{shipment.destination}</td>
+                  <td>{shipment.status}</td>
+                  <td>
+                    <select
+                      value={shipment.status}
+                      onChange={(e) =>
+                        updateStatus(shipment._id, e.target.value)
+                      }
+                      className="form-select"
+                    >
+                      <option>Pending</option>
+                      <option>In Transit</option>
+                      <option>Delivered</option>
+                      <option>Delayed</option>
+                    </select>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 }
 
 export default AdminShipmentForm;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
