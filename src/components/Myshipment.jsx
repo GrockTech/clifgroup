@@ -9,7 +9,7 @@ function Myshipment() {
 
   // Fetch shipments
   useEffect(() => {
-    fetch("/api/shipments")
+    fetch(`${process.env.REACT_APP_API_URL}/api/shipments`)
       .then((res) => res.json())
       .then((data) => {
         setShipments(data);
@@ -34,7 +34,7 @@ function Myshipment() {
 
       const updated = await res.json();
 console.log("api", newStatus)
-console.log("i am on the apge")
+console.log("i am on the")
       // update local state
       setShipments((prev) =>
         prev.map((s) => (s._id === id ? { ...s, status: updated.status } : s))
