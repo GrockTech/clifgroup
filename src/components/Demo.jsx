@@ -109,6 +109,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoChevronBackCircle } from "react-icons/io5";
+import { RiDeleteBin2Fill } from "react-icons/ri";
 
 const Demo = () => {
   const [shipments, setShipments] = useState([]);
@@ -162,6 +163,24 @@ const Demo = () => {
   if (loading) return <p>Loading shipments...</p>;
   if (error) return <p>Error: {error}</p>;
 
+const handleDelete = async (id) => {
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/shipments/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!res.ok) throw new Error("Failed to delete shipment");
+
+      // Update local state after delete
+      setShipments((prev) => prev.filter((s) => s._id !== id));
+    } catch (err) {
+      alert("Error deleting shipment: " + err.message);
+    }
+  };
+
   return (
     <div>
 
@@ -208,6 +227,14 @@ const Demo = () => {
                     <option>Delivered</option>
                     <option>Delayed</option>
                   </select>
+                </td>
+                 <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={handleDelete(shipments._id)}
+                  >
+                    <RiDeleteBin2Fill />
+                  </button>
                 </td>
               </tr>
             ))}
