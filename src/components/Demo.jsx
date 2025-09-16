@@ -231,7 +231,9 @@ const handleDelete = async (id) => {
                  <td>
                   <button
                     className="btn btn-danger"
-                    onClick={()=>handleDelete(shipment._id)}
+                    onClick={()=> {if(window.confirm("are you sure you want to delete?")){
+                      handleDelete(shipment._id)
+                    }}}
                   >
                     <RiDeleteBin2Fill />
                   </button>
